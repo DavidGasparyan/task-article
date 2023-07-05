@@ -83,6 +83,29 @@
       "content": "Some random content",
       "publishDate": 1690761600000,
       "id": "qvEoS2Q"
+    },
+    {
+      "email": "david@gmail.com",
+      "password": "12345678",
+      "id": "b66LVHA"
+    },
+    {
+      "email": "david@gmail.com",
+      "password": "12345678",
+      "id": "nYtPDcg"
+    },
+    {
+      "id": "5am1Ni1"
+    },
+    {
+      "id": "NJe8FeH"
+    }
+  ],
+  "users": [
+    {
+      "email": "david@gmail.com",
+      "password": "$2a$10$DXT/saYunzPkQRaUnw0m5Ot8oQphXNDeV5EYNHMA9Dr7Aqp87sk9C",
+      "id": 1
     }
   ]
 }
