@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -13,41 +14,31 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly _http: HttpClient,
-    private _route: Router
+    private readonly _route: Router,
+    private readonly _fb: FormBuilder,
+    private readonly _authService: AuthService,
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      firstName: new FormControl(),
-      password: new FormControl(),
-    })
+    this.loginForm = this._fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   login(){
-    // console.log(this.login.value);
-    // this._http.get<any>("http://localhost:3000/signup")
-    //   .subscribe(res=>{
-    //     const user = res.find((a:any)=>{
-    //       return a.fname === this.login.value.fname && a.password === this.login.value.password
-    //     });
-    //
-    //     if(user){
-    //       alert('you are successfully login');
-    //       this.login.reset();
-    //       $('.form-box').css('display','none');
-    //       this._route.navigate(['dashboard']);
-    //     }else{
-    //       alert('User Not Found');
-    //       this._route.navigate(['login']);
-    //     }
-    //
-    //   }, err=>{
-    //     alert('Something was wrong');
-    //   })
-  }
+    const { email, password } = this.loginForm.value;
 
-  sbtn1(){
-    // $('.form-box').css('display','none');
-    // $('.form-box1').css('display','block');
+    console.log(email, password)
+
+    if (email && password) {
+      this._authService.login({ email, password })
+        .subscribe(
+          () => {
+            console.log("User is logged in");
+            this._route.navigateByUrl('/articles');
+          }
+        );
+    }
   }
 }

@@ -7,7 +7,7 @@ import {Article} from "../interfaces/article.interface";
   providedIn: 'root'
 })
 export class ArticlesService {
-  private API = 'http://localhost:3000/api/articles';
+  private API = '/api/articles';
   private _articles = new BehaviorSubject([] as Article[]);
   constructor(
     private readonly http: HttpClient,

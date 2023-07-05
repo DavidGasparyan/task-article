@@ -1,32 +1,65 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {User} from "../interfaces/user.interface";
+import {Credentials} from "../interfaces/credentials.interface";
+import {map, shareReplay, tap} from "rxjs";
+import * as moment from "moment";
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly API = 'http://localhost:3000/api/signup';
+  private readonly API = '/api/login';
 
   constructor(
     private readonly _http: HttpClient,
   ) {}
 
-  login(user: User) {
-    this._http.get<User>(this.API, user)
-      // .subscribe(res=> {
-      //   const user = res.find((a:any)=>{
-      //     return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
-      //   });
-      //   if(user){
-      //     alert('Login Succesful');
-      //     this.loginForm.reset()
-      //     this.router.navigate(["home"])
-      //   }else{
-      //     alert("user not found")
-      //   }
-      // },err=>{
-      //   alert("Something went wrong")
-      // })
+  login(credentials: Credentials) {
+    return this._http.post(this.API, credentials).pipe(
+      map(res => this.setSession(res)),
+      shareReplay()
+    );
+  }
+
+  private setSession(authResult: any) {
+    const { accessToken } = authResult
+    const { email, exp } = this.getDecodedAccessToken(accessToken);
+    const expiresAt = moment().add(exp, 'second');
+
+    localStorage.setItem('id_token', accessToken);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+  }
+
+  logout() {
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+  }
+
+  public isLoggedIn() {
+    return moment().isBefore(this.getExpiration());
+  }
+
+  isLoggedOut() {
+    return !this.isLoggedIn();
+  }
+
+  getExpiration() {
+    const expiration = localStorage.getItem("expires_at");
+
+    if (expiration) {
+      const expiresAt = JSON.parse(expiration);
+      return moment(expiresAt);
+    }
+
+    return null
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch(err) {
+      return null;
+    }
   }
 }
