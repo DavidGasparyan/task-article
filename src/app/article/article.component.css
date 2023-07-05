@@ -1,0 +1,24 @@
+.article {
+  padding: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.author {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.content {
+  margin-bottom: 10px;
+}
+
+.publish-date {
+  color: #888;
+}

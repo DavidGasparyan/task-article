@@ -8,6 +8,9 @@ import { ArticleComponent } from './article.component';
   declarations: [
     ArticleComponent
   ],
+  exports: [
+    ArticleComponent
+  ],
   imports: [
     CommonModule
   ]

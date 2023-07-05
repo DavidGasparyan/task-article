@@ -3,7 +3,7 @@
     <a routerLink="create">Create Article +</a>
   </div>
   <div *ngFor="let article of displayedArticles">
-    {{ article.title }}
+    <app-article [article]="article"></app-article>
   </div>
 
   <div class="pagination">
