@@ -1,27 +1,37 @@
-<form [formGroup]="articleForm" (ngSubmit)="submitForm()" novalidate>
-  <div>
-    <label for="title">Title</label>
-    <input type="text" id="title" formControlName="title">
-    <div *ngIf="isFieldInputInvalid('title')" class="error">Title is required</div>
+<form class="form" [formGroup]="articleForm" (ngSubmit)="submitForm()" novalidate>
+  <div class="form-control">
+    <label class="form-label" for="title">Title</label>
+    <input class="form-item" type="text" id="title" formControlName="title">
+    <div *ngIf="isFieldInputInvalid('title')" class="error">
+      <div *ngIf="this.articleForm.get('title')?.errors?.['required']">
+        Title is required.
+      </div>
+      <div *ngIf="this.articleForm.get('title')?.errors?.['minlength']">
+        Title must be at least 6 characters long.
+      </div>
+      <div *ngIf="this.articleForm.get('title')?.errors?.['maxlength']">
+        Title must be at most 100 characters long.
+      </div>
+    </div>
   </div>
 
-  <div>
-    <label for="author">Author</label>
-    <input type="text" id="author" formControlName="author">
+  <div class="form-control">
+    <label class="form-label" for="author">Author</label>
+    <input class="form-item" type="text" id="author" formControlName="author">
     <div *ngIf="isFieldInputInvalid('author')" class="error">Author is required</div>
   </div>
 
-  <div>
-    <label for="content">Content</label>
-    <textarea id="content" formControlName="content"></textarea>
+  <div class="form-control">
+    <label class="form-label" for="content">Content</label>
+    <textarea class="form-item" id="content" formControlName="content"></textarea>
     <div *ngIf="isFieldInputInvalid('content')" class="error">Content is required</div>
   </div>
 
-  <div>
-    <label for="publishDate">Publish Date</label>
-    <input type="date" id="publishDate" formControlName="publishDate">
+  <div class="form-control">
+    <label class="form-label" for="publishDate">Publish Date</label>
+    <input class="form-item" type="date" id="publishDate" formControlName="publishDate">
     <div *ngIf="isFieldInputInvalid('publishDate')" class="error">Publish Date is required</div>
   </div>
 
-  <button type="submit" [disabled]="articleForm.invalid">Submit</button>
+  <button class="btn-submit" type="submit" [disabled]="articleForm.invalid">Submit</button>
 </form>

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Article} from "../interfaces/article.interface";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-article-create',
@@ -21,7 +21,7 @@ export class ArticleCreateComponent implements OnInit {
 
   ngOnInit() {
     this.articleForm = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
       author: ['', Validators.required],
       content: ['', Validators.required],
       publishDate: ['', Validators.required]
@@ -36,6 +36,8 @@ export class ArticleCreateComponent implements OnInit {
   }
 
   isFieldInputInvalid(fieldName: string) {
-    return this.articleForm.get(fieldName)?.touched && !this.articleForm.get(fieldName)?.valid;
+    const formField = this.articleForm.get(fieldName) as FormControl;
+
+    return formField.invalid && (formField.dirty || formField.touched);
   }
 }
