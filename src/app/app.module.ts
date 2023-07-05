@@ -10,6 +10,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import { SignupComponent } from './signup/signup.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import {ArticleListModule} from "./article-list/article-list.module";
+import {ArticleModule} from "./article/article.module";
+import {HighchartsChartModule} from "highcharts-angular";
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { StatisticsComponent } from './statistics/statistics.component';
     RouterOutlet,
     HttpClientModule,
     ReactiveFormsModule,
+    ArticleListModule,
+    ArticleModule,
+    HighchartsChartModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

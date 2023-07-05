@@ -16,5 +16,8 @@ import {ArticleModule} from "../article/article.module";
     ArticleListRoutingModule,
     ArticleModule,
   ],
+  exports: [
+    ArticleListComponent
+  ]
 })
 export class ArticleListModule { }

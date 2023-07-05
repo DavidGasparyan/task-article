@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, shareReplay, Subject} from "rxjs";
 import {Article} from "../interfaces/article.interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticlesService {
-  private API = '/api/articles';
-  private _articles = new BehaviorSubject([] as Article[]);
+  private API: string = '/api/articles';
+  private _articles: Subject<Article[]> = new Subject();
   constructor(
     private readonly http: HttpClient,
   ) { }
@@ -23,6 +23,6 @@ export class ArticlesService {
   }
 
   get articles() {
-    return this._articles.asObservable();
+    return this._articles.asObservable().pipe(shareReplay(1));
   }
 }
