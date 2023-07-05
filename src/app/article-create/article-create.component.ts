@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Article} from "../interfaces/article.interface";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ArticlesService} from "../services/articles.service";
 
 @Component({
   selector: 'app-article-create',
@@ -17,11 +18,14 @@ export class ArticleCreateComponent implements OnInit {
 
   articleForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private readonly _fb: FormBuilder,
+    private readonly _articlesService: ArticlesService,
+  ) {}
 
   ngOnInit() {
-    this.articleForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+    this.articleForm = this._fb.group({
+      title: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
       author: ['', Validators.required],
       content: ['', Validators.required],
       publishDate: ['', Validators.required]
@@ -30,8 +34,17 @@ export class ArticleCreateComponent implements OnInit {
 
   submitForm() {
     if (this.articleForm.valid) {
-      // Perform form submission logic here
-      console.log('Form submitted:', this.articleForm.value);
+      const date: Date = new Date(this.articleForm.get('publishDate')?.value);
+      const article: Article = {
+        title: this.articleForm.get('title')?.value,
+        author: this.articleForm.get('author')?.value,
+        content: this.articleForm.get('content')?.value,
+        publishDate: date.getTime(),
+      }
+
+      this._articlesService.create(article).subscribe((article: Article) => {
+        this.articleForm.reset();
+      });
     }
   }
 
