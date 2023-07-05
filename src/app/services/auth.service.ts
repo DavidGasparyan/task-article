@@ -9,17 +9,20 @@ import jwt_decode from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly API = '/api/login';
-
   constructor(
     private readonly _http: HttpClient,
   ) {}
 
   login(credentials: Credentials) {
-    return this._http.post(this.API, credentials).pipe(
-      map(res => this.setSession(res)),
-      shareReplay()
-    );
+    return this._http.post('/api/login', credentials)
+      .pipe(
+        map(res => this.setSession(res)),
+        shareReplay()
+      );
+  }
+
+  signup(credentials: Credentials) {
+    return this._http.post('/api/register', credentials)
   }
 
   private setSession(authResult: any) {

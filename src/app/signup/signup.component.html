@@ -1,6 +1,6 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="signup()">
     <div>
       <label for="email">Email</label>
       <input formControlName="email" type="email" id="email" name="email" required>
@@ -10,8 +10,8 @@
       <input formControlName="password" type="password" id="password" name="password" required>
     </div>
     <div>
-      <button type="submit">Login</button>
-      <button [routerLink]="['/signup']">Sign Up</button>
+      <button type="submit">Sign Up</button>
+      <button [routerLink]="['/login']">Log In</button>
     </div>
   </form>
 </div>

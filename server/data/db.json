@@ -89,7 +89,14 @@
     {
       "email": "david@gmail.com",
       "password": "$2a$10$DXT/saYunzPkQRaUnw0m5Ot8oQphXNDeV5EYNHMA9Dr7Aqp87sk9C",
+      "type": "user",
       "id": 1
+    },
+    {
+      "email": "david2@gmail.com",
+      "password": "$2a$10$HzcLQRckUEuamSRdpQYy3uPs9.UfdX5Emzm09iZComBYh70KTiX3y",
+      "type": "admin",
+      "id": 2
     }
   ]
 }
