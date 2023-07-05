@@ -8,18 +8,40 @@ import {Article} from "../interfaces/article.interface";
   styleUrls: ['./article-list.component.css']
 })
 export class ArticleListComponent implements OnInit {
+  articlesPerPage = 3;
+  currentPage = 1
+
   constructor(
     private readonly _articlesService: ArticlesService,
   ) {
   }
 
   articles: Article[] = [];
+  displayedArticles: Article[] = [];
 
   ngOnInit() {
     this._articlesService.get();
-    this._articlesService.articles.subscribe((articles: any) => {
-      console.log(articles)
-      this.articles = articles
-    });
+    this._articlesService.articles
+      .subscribe((articles: any) => {
+        this.articles = articles;
+        this.displayArticles(this.currentPage);
+      });
+  }
+
+  get totalPages(): number[] {
+    return Array(Math.ceil(this.articles.length / this.articlesPerPage))
+      .fill(0)
+      .map((_, index) => index + 1);
+  }
+
+  displayArticles(page: number) {
+    const startIndex = (page - 1) * this.articlesPerPage;
+    const endIndex = startIndex + this.articlesPerPage;
+    this.displayedArticles = this.articles.slice(startIndex, endIndex);
+  }
+
+  changePage(page: number) {
+    this.currentPage = page;
+    this.displayArticles(this.currentPage);
   }
 }

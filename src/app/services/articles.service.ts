@@ -7,7 +7,7 @@ import {Article} from "../interfaces/article.interface";
   providedIn: 'root'
 })
 export class ArticlesService {
-  private API = 'https://64a57ad400c3559aa9bfc759.mockapi.io/asi/v1/articles';
+  private API = 'http://localhost:3000/api/articles';
   private _articles = new BehaviorSubject([] as Article[]);
   constructor(
     private readonly http: HttpClient,

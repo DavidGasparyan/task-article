@@ -2,17 +2,17 @@
   <div>
     <a routerLink="create">Create Article +</a>
   </div>
-  <div *ngFor="let article of articles">
+  <div *ngFor="let article of displayedArticles">
     {{ article.title }}
   </div>
 
-<!--  <div class="pagination">-->
-<!--    <button-->
-<!--      *ngFor="let page of totalPages"-->
-<!--      [ngClass]="{ 'active': page === currentPage }"-->
-<!--      (click)="changePage(page)"-->
-<!--    >-->
-<!--      {{ page }}-->
-<!--    </button>-->
-<!--  </div>-->
+  <div class="pagination">
+    <button
+      *ngFor="let page of totalPages"
+      [ngClass]="{ 'active': page === currentPage }"
+      (click)="changePage(page)"
+    >
+      {{ page }}
+    </button>
+  </div>
 </div>
