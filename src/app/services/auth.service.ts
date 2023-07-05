@@ -4,6 +4,7 @@ import {Credentials} from "../interfaces/credentials.interface";
 import {map, shareReplay, tap} from "rxjs";
 import * as moment from "moment";
 import jwt_decode from 'jwt-decode';
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import jwt_decode from 'jwt-decode';
 export class AuthService {
   constructor(
     private readonly _http: HttpClient,
+    private readonly _userService: UserService,
   ) {}
 
   login(credentials: Credentials) {
@@ -26,15 +28,17 @@ export class AuthService {
   }
 
   private setSession(authResult: any) {
-    const { accessToken } = authResult
-    const { email, exp } = this.getDecodedAccessToken(accessToken);
+    const { accessToken, user } = authResult
+    const { exp} = this.getDecodedAccessToken(accessToken);
     const expiresAt = moment().add(exp, 'second');
 
+    localStorage.setItem('user-info', JSON.stringify(user));
     localStorage.setItem('id_token', accessToken);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
   }
 
   logout() {
+    localStorage.removeItem('user-info');
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
   }

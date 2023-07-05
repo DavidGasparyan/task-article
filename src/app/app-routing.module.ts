@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {authGuard} from "./guard/auth.guard";
 import {SignupComponent} from "./signup/signup.component";
+import {StatisticsComponent} from "./statistics/statistics.component";
+import {adminGuard} from "./guard/admin.guard";
 
 const routes: Routes = [
   {
@@ -17,6 +19,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+  },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'articles',
