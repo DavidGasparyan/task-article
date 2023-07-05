@@ -1,0 +1,94 @@
+{
+  "articles": [
+    {
+      "id": "1",
+      "createdAt":1688566536,
+      "updatedAt":1688566536,
+      "title":"title 1",
+      "author":"author 1",
+      "content":"content 1",
+      "publishDate":1688566536
+    },
+    {
+      "createdAt":1688566476,
+      "updatedAt":1688566476,
+      "title":"title 2",
+      "author":"author 2",
+      "content":"content 2",
+      "publishDate":1688566476,
+      "id":"2"
+    },
+    {
+      "createdAt":1688566416,
+      "updatedAt":1688566416,
+      "title":"title 3",
+      "author":"author 3",
+      "content":"content 3",
+      "publishDate":1688566416,
+      "id":"3"
+    },
+    {
+      "createdAt":1688566356,
+      "updatedAt":1688566356,
+      "title":"title 4",
+      "author":"author 4",
+      "content":"content 4",
+      "publishDate":1688566356,
+      "id":"4"
+    },
+    {
+      "createdAt":1688566296,
+      "updatedAt":1688566296,
+      "title":"title 5",
+      "author":"author 5",
+      "content":"content 5",
+      "publishDate":1688566296,
+      "id":"5"
+    },
+    {
+      "createdAt":1688566236,
+      "updatedAt":1688566236,
+      "title":"title 6",
+      "author":"author 6",
+      "content":"content 6",
+      "publishDate":1688566236,
+      "id":"6"
+    },
+    {
+      "createdAt":1688566176,
+      "updatedAt":1688566176,
+      "title":"title 7",
+      "author":"author 7",
+      "content":"content 7",
+      "publishDate":1688566176,
+      "id":"7"
+    },
+    {
+      "createdAt":1688566116,
+      "updatedAt":1688566116,
+      "title":"title 8",
+      "author":"author 8",
+      "content":"content 8",
+      "publishDate":1688566116,
+      "id":"8"
+    },
+    {
+      "createdAt":1688566056,
+      "updatedAt":1688566056,
+      "title":"title 9",
+      "author":"author 9",
+      "content":"content 9",
+      "publishDate":1688566056,
+      "id":"9"
+    },
+    {
+      "createdAt":1688565996,
+      "updatedAt":1688565996,
+      "title":"title 10",
+      "author":"author 10",
+      "content":"content 10",
+      "publishDate":1688565996,
+      "id":"10"
+    }
+  ]
+}
