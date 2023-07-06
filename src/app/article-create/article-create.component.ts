@@ -49,8 +49,7 @@ export class ArticleCreateComponent implements OnInit {
   }
 
   isFieldInputInvalid(fieldName: string) {
-    const formField = this.articleForm.get(fieldName) as FormControl;
-
+    const formField: FormControl = this.articleForm.get(fieldName) as FormControl;
     return formField.invalid && (formField.dirty || formField.touched);
   }
 }

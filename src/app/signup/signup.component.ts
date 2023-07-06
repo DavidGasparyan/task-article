@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
@@ -22,15 +22,21 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = this._fb.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      userType: ['', Validators.required],
     });
   }
 
-  signup() {
-    const { email, password } = this.signupForm.value;
+  isFieldInputInvalid(fieldName: string) {
+    const formField: FormControl = this.signupForm.get(fieldName) as FormControl;
+    return formField.invalid && (formField.dirty || formField.touched);
+  }
 
-    if (email && password) {
-      this._authService.signup({ email, password })
+  signup() {
+    const { email, password, userType } = this.signupForm.value;
+
+    if (email && password && userType) {
+      this._authService.signup({ email, password, type: userType })
         .subscribe(
           () => {
             this._route.navigateByUrl('/login');

@@ -5,6 +5,7 @@ import {map, shareReplay, tap} from "rxjs";
 import * as moment from "moment";
 import jwt_decode from 'jwt-decode';
 import {UserService} from "./user.service";
+import {User} from "../interfaces/user.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,8 @@ export class AuthService {
       );
   }
 
-  signup(credentials: Credentials) {
-    return this._http.post('/api/register', credentials)
+  signup(user: any) {
+    return this._http.post('/api/register', user)
   }
 
   private setSession(authResult: any) {

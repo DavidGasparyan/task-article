@@ -21,7 +21,7 @@ label {
 }
 
 input,
-input {
+select {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -40,4 +40,9 @@ button {
 
 button:hover {
   background-color: #45a049;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
 }

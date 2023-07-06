@@ -118,6 +118,18 @@
       "password": "$2a$10$HzcLQRckUEuamSRdpQYy3uPs9.UfdX5Emzm09iZComBYh70KTiX3y",
       "type": "admin",
       "id": 2
+    },
+    {
+      "email": "admin@admin",
+      "password": "$2a$10$bdeK.ezJ1KbeWCx2HtGH5.mkLhzMPOwA7LRI1.bYwK5LQzZO8QRLW",
+      "type": "admin",
+      "id": 3
+    },
+    {
+      "email": "admin1@amdin",
+      "password": "$2a$10$xHHCY8e9gM8Ta/YehIaPm.yb61x3zGw3PI0rPoFkO71bhTyGuDPAq",
+      "type": "admin",
+      "id": 4
     }
   ]
 }

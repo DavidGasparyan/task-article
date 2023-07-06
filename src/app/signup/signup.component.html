@@ -4,10 +4,32 @@
     <div>
       <label for="email">Email</label>
       <input formControlName="email" type="email" id="email" name="email" required>
+      <div *ngIf="isFieldInputInvalid('email')" class="error">
+        <div *ngIf="this.signupForm.get('email')?.errors?.['required']">
+          Title is required.
+        </div>
+      </div>
     </div>
     <div>
       <label for="password">Password</label>
       <input formControlName="password" type="password" id="password" name="password" required>
+      <div *ngIf="isFieldInputInvalid('password')" class="error">
+        <div *ngIf="this.signupForm.get('password')?.errors?.['required']">
+          Password is required.
+        </div>
+      </div>
+    </div>
+    <div>
+      <label for="userType">Password</label>
+      <select formControlName="userType" id="userType" name="userType" required >
+        <option value="user" [selected]="true">User</option>
+        <option value="admin">Admin</option>
+      </select>
+      <div *ngIf="isFieldInputInvalid('userType')" class="error">
+        <div *ngIf="this.signupForm.get('userType')?.errors?.['required']">
+          User type is required.
+        </div>
+      </div>
     </div>
     <div>
       <button type="submit">Sign Up</button>
