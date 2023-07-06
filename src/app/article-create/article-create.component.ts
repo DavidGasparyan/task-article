@@ -20,7 +20,7 @@ export class ArticleCreateComponent implements OnInit {
 
   constructor(
     private readonly _fb: FormBuilder,
-    private readonly _articlesService: ArticlesService,
+    public readonly articlesService: ArticlesService,
   ) {}
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class ArticleCreateComponent implements OnInit {
         publishDate: date.getTime(),
       }
 
-      this._articlesService.create(article).subscribe((article: Article) => {
+      this.articlesService.create(article).subscribe((article: Article) => {
         this.articleForm.reset();
       });
     }
