@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ArticlesService} from "../services/articles.service";
 import {Article} from "../interfaces/article.interface";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-article-list',
@@ -13,6 +14,7 @@ export class ArticleListComponent implements OnInit {
 
   constructor(
     private readonly _articlesService: ArticlesService,
+    public readonly _userService: UserService,
   ) {
   }
 

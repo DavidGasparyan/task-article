@@ -2,6 +2,9 @@
   <div>
     <a routerLink="create">Create Article +</a>
   </div>
+  <div *ngIf="_userService.isAdmin()">
+    <a [routerLink]="['/statistics']">Statistics</a>
+  </div>
   <div *ngFor="let article of displayedArticles">
     <app-article [article]="article"></app-article>
   </div>
